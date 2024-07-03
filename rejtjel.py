@@ -64,6 +64,7 @@ kulcs = ""
 uzenet2 = ""
 tart = 0
 tartlista = ""
+kulcslehet = ""
 
 def kodfejto(rejtuz1, rejtuz2, ismertszo, szavaklista):
 #print(kodol("cat visible absolutely ceo", "abcdefghijklmnopqrstuvwxyz "))       A KETTŐ ÜZENET PLUSZ A KULCS
@@ -89,7 +90,7 @@ def kodfejto(rejtuz1, rejtuz2, ismertszo, szavaklista):
     global uzenet2
     global tart
     global tartlista
-
+    global kulcslehet
     
     kulcshossz = max(len(rejtuz1), len(rejtuz2))
 
@@ -156,16 +157,16 @@ def kodfejto(rejtuz1, rejtuz2, ismertszo, szavaklista):
                 uzenet2lehet = szo
             else:
                 uzenet2lehet = utolsoszotorles(uzenet2) + szo
-            print("uzenet2lehet " + uzenet2lehet)
+            print(f"uzenet2lehet:{uzenet2lehet}.")
 
 
             kulcslehet += dekodol(rejtuz2[:len(uzenet2lehet)], uzenet2lehet)
-            print("kulcslehet "+ kulcslehet)
+            print(f"kulcslehet:{kulcslehet}.")
 
 
             uzenet1lehet = dekodol(rejtuz1[:len(kulcslehet)], kulcslehet)
             uzenet1lehet = uzenet1lehet[len(uzenet1):]
-            print("uzenet1lehet " + uzenet1lehet)
+            print(f"uzenet1lehet:{uzenet1lehet}.")
             if uzenet1lehet == "":
                 return kulcslehet
 
@@ -207,9 +208,9 @@ def kodfejto(rejtuz1, rejtuz2, ismertszo, szavaklista):
     else:
         for i in range(len(lehet1)):
             if len(kulcs) == len(rejtuz1):
-                return kulcs
+                return kulcslehet
             if len(kulcs) == kulcshossz:
-                return kulcs
+                return kulcslehet
             elif len(kulcs) < kulcshossz:
                     lejatszas_szama += 1
                     uzenet1 += lehet1[i]
@@ -226,4 +227,4 @@ rejtuz2 = "aeolwxovvinpadsghzfftm xpmm"
 ismertszo = "cat"
 szavaklista = szotar
 akulcs = kodfejto(rejtuz1, rejtuz2, ismertszo, szotar)
-print(akulcs)
+print(f"A kulcs: {akulcs}.")
